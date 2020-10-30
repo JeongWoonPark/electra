@@ -100,9 +100,6 @@ class PretrainingConfig(object):
         # update defaults with passed-in hyperparameters
         self.update(kwargs)
 
-        self.max_predictions_per_seq = int((self.mask_prob + 0.005) *
-                                           self.max_seq_length)
-
         # debug-mode settings
         if self.debug:
             self.train_batch_size = 8
@@ -127,6 +124,9 @@ class PretrainingConfig(object):
                 self.embedding_size = 1024
                 self.mask_prob = 0.25
                 self.train_batch_size = 2048
+
+        self.max_predictions_per_seq = int((self.mask_prob + 0.005) *
+                                           self.max_seq_length)
 
         # passed-in-arguments override (for example) debug-mode defaults
         self.update(kwargs)
