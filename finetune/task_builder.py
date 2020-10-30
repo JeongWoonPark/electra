@@ -54,6 +54,8 @@ def get_task(config: configure_finetuning.FinetuningConfig, task_name,
         return classification_tasks.STS(config, tokenizer)
     elif task_name == "nsmc":
         return classification_tasks.NSMC(config, tokenizer)
+    elif task_name == "korquad":
+        return qa_tasks.KorQuAD(config, tokenizer)
     elif task_name == "squad":
         return qa_tasks.SQuAD(config, tokenizer)
     elif task_name == "squadv1":
