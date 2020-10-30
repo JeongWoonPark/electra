@@ -598,6 +598,11 @@ class SQuADTask(QATask):
         return qa_metrics.SpanBasedQAScorer(self.config, self, split, self.v2)
 
 
+class KorQuAD(SQuADTask):
+    def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+        super(KorQuAD, self).__init__(config, "korquad", tokenizer)
+
+
 class SQuAD(SQuADTask):
     def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
         super(SQuAD, self).__init__(config, "squad", tokenizer, v2=True)

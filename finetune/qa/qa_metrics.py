@@ -102,7 +102,7 @@ class SpanBasedQAScorer(scorer.Scorer):
         scores_diff_json = collections.OrderedDict()
 
         for example in self._eval_examples:
-            example_id = example.qas_id if "squad" in self._name else example.qid
+            example_id = example.qas_id if "squad" in self._name or "korquad" in self._name else example.qid
             features = self._task.featurize(example, False, for_eval=True)
 
             prelim_predictions = []

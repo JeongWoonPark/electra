@@ -292,6 +292,16 @@ def run_finetuning(config: configure_finetuning.FinetuningConfig):
                                 preds[q] = ""
                         utils.write_json(preds, config.test_predictions(
                             task.name, "test", trial))
+                    elif task.name == "korquad":
+                        scorer = model_runner.evaluate_task(task, "dev", False)
+                        scorer.write_predictions()
+                        preds = utils.load_json(config.qa_preds_file("korquad"))
+                        null_odds = utils.load_json(config.qa_na_file("korquad"))
+                        for q, _ in preds.items():
+                            if null_odds[q] > config.qa_na_threshold:
+                                preds[q] = ""
+                        utils.write_json(preds, config.test_predictions(
+                            task.name, "dev", trial))
                     else:
                         utils.log("Skipping task", task.name,
                                   "- writing predictions is not supported for this task")

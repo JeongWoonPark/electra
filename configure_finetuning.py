@@ -135,7 +135,7 @@ class FinetuningConfig(object):
             task_name = self.task_names[0]
             if task_name == "rte" or task_name == "sts":
                 self.num_train_epochs = 10.0
-            elif "squad" in task_name or "qa" in task_name:
+            elif "korquad" in task_name or "squad" in task_name or "qa" in task_name:
                 self.max_seq_length = 512
                 self.num_train_epochs = 2.0
                 self.write_distill_outputs = False
