@@ -279,8 +279,7 @@ def run_finetuning(config: configure_finetuning.FinetuningConfig):
                 heading("Running on the test set and writing the predictions")
                 for task in tasks:
                     # Currently only writing preds for GLUE and SQuAD 2.0 is supported
-                    if task.name in ["cola", "mrpc", "mnli", "sst", "rte", "qnli", "qqp",
-                                     "sts"]:
+                    if task.name in ["cola", "mrpc", "mnli", "sst", "rte", "qnli", "qqp", "sts", "nsmc"]:
                         for split in task.get_test_splits():
                             model_runner.write_classification_outputs([task], trial, split)
                     elif task.name == "squad":

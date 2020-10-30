@@ -322,6 +322,16 @@ def read_tsv(input_file, quotechar=None, max_lines=None):
         return lines
 
 
+class NSMC(ClassificationTask):
+    """Naver Sentiment Movie Corpus"""
+
+    def __init__(self, config: configure_finetuning.FinetuningConfig, tokenizer):
+        super(NSMC, self).__init__(config, "nsmc", tokenizer, ["0", "1"])
+
+    def _create_examples(self, lines, split):
+        return self._load_glue(lines, split, 1, None, 2, False)
+
+
 class MNLI(ClassificationTask):
     """Multi-NLI."""
 
