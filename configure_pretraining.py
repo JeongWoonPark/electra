@@ -63,7 +63,7 @@ class PretrainingConfig(object):
             if "model_hparam_overrides" in kwargs else {})
         self.embedding_size = None  # bert hidden size by default
         self.vocab_size = 30522  # number of tokens in the vocabulary
-        self.do_lower_case = True  # lowercase the input?
+        self.do_lower_case = False  # lowercase the input?
 
         # generator settings
         self.uniform_generator = False  # generator is uniform at random
