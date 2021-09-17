@@ -116,6 +116,6 @@ def evaluate(answers, predictions, skip_no_answer=False):
 
 
 def main(config: configure_finetuning.FinetuningConfig, split, task_name):
-    answers = read_answers(os.path.join(config.raw_data_dir(task_name), split + ".jsonl"))
+    answers = read_answers(os.path.join(config.raw_data_dir(task_name), split + ".json"))
     predictions = read_predictions(config.qa_preds_file(task_name))
     return evaluate(answers, predictions, True)

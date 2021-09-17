@@ -28,6 +28,7 @@ from finetune import scorer
 from finetune.qa import mrqa_official_eval
 from finetune.qa import squad_official_eval
 from finetune.qa import squad_official_eval_v1
+from finetune.qa import korquad_official_eval_v1
 from model import tokenization
 from util import utils
 
@@ -81,6 +82,9 @@ class SpanBasedQAScorer(scorer.Scorer):
                 self._config.qa_eval_file(self._name)).items())
         elif self._name == "squadv1":
             return sorted(squad_official_eval_v1.main(
+                self._config, self._split).items())
+        elif self._name == "korquad":
+            return sorted(korquad_official_eval_v1.main(
                 self._config, self._split).items())
         else:
             return sorted(mrqa_official_eval.main(
