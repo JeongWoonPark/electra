@@ -1,5 +1,0 @@
-{
-	"task_names": ["nsmc"],
-	"model_size": "small",
-	"vocab_size": 32000
-}

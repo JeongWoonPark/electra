@@ -31,11 +31,11 @@ class FinetuningConfig(object):
         # general
         self.model_name = model_name
         self.debug = False  # debug mode for quickly running things
-        self.log_examples = False  # print out some train examples for debugging
+        self.log_examples = True  # print out some train examples for debugging
         self.num_trials = 1  # how many train+eval runs to perform
         self.do_train = True  # train a model
         self.do_eval = True  # evaluate the model
-        self.keep_all_models = True  # if False, only keep the last trial's ckpt
+        self.keep_all_models = False  # if False, only keep the last trial's ckpt
 
         # model
         self.model_size = "small"  # one of "small", "base", or "large"
@@ -60,7 +60,7 @@ class FinetuningConfig(object):
         self.warmup_proportion = 0.1  # how much of training to warm up the LR for
         self.save_checkpoints_steps = 1000000
         self.iterations_per_loop = 1000
-        self.use_tfrecords_if_existing = True  # don't make tfrecords and write them
+        self.use_tfrecords_if_existing = False  # don't make tfrecords and write them
         # to disc if existing ones are found
 
         # writing model outputs to disc
@@ -141,7 +141,7 @@ class FinetuningConfig(object):
                 self.write_distill_outputs = False
                 self.write_test_outputs = False
             elif task_name == "chunk":
-                self.max_seq_length = 256
+                self.max_seq_length = 128
             else:
                 self.num_train_epochs = 3.0
 
